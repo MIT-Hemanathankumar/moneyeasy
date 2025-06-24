@@ -5,7 +5,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 
 class VideopageWidget extends StatefulWidget {
-  const VideopageWidget({Key key}) : super(key: key);
+  const VideopageWidget({Key? key}) : super(key: key);
 
   @override
   _VideopageWidgetState createState() => _VideopageWidgetState();

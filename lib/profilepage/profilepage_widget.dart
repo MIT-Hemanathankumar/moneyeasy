@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfilepageWidget extends StatefulWidget {
-  const ProfilepageWidget({Key key}) : super(key: key);
+  const ProfilepageWidget({Key? key}) : super(key: key);
 
   @override
   _ProfilepageWidgetState createState() => _ProfilepageWidgetState();
@@ -16,12 +16,12 @@ class ProfilepageWidget extends StatefulWidget {
 
 class _ProfilepageWidgetState extends State<ProfilepageWidget> {
   String uploadedFileUrl = '';
-  TextEditingController textController1;
-  TextEditingController emailAddressController1;
-  TextEditingController emailAddressController2;
-  TextEditingController emailAddressController3;
-  TextEditingController emailAddressController4;
-  TextEditingController emailAddressController5;
+  late TextEditingController textController1;
+  late TextEditingController emailAddressController1;
+  late TextEditingController emailAddressController2;
+  late TextEditingController emailAddressController3;
+  late TextEditingController emailAddressController4;
+  late TextEditingController emailAddressController5;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -135,7 +135,7 @@ class _ProfilepageWidgetState extends State<ProfilepageWidget> {
                         mediaSource: MediaSource.photoGallery,
                       );
                       if (validateFileFormat(
-                          selectedMedia.storagePath, context)) {
+                          selectedMedia!.storagePath, context)) {
                         showUploadMessage(
                           context,
                           'Uploading file...',

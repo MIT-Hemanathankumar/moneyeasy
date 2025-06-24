@@ -20,36 +20,36 @@ class FFButtonOptions {
     this.borderSide,
   });
 
-  final TextStyle textStyle;
-  final double elevation;
-  final double height;
-  final double width;
-  final EdgeInsetsGeometry padding;
-  final Color color;
-  final Color disabledColor;
-  final Color disabledTextColor;
-  final Color splashColor;
-  final double iconSize;
-  final Color iconColor;
-  final EdgeInsetsGeometry iconPadding;
-  final double borderRadius;
-  final BorderSide borderSide;
+  final TextStyle? textStyle;
+  final double? elevation;
+  final double? height;
+  final double? width;
+  final EdgeInsetsGeometry? padding;
+  final Color? color;
+  final Color? disabledColor;
+  final Color? disabledTextColor;
+  final Color? splashColor;
+  final double? iconSize;
+  final Color? iconColor;
+  final EdgeInsetsGeometry? iconPadding;
+  final double? borderRadius;
+  final BorderSide? borderSide;
 }
 
 class FFButtonWidget extends StatefulWidget {
   const FFButtonWidget({
-    Key key,
-    @required this.text,
-    @required this.onPressed,
+    Key? key,
+    required this.text,
+    required this.onPressed,
     this.icon,
     this.iconData,
-    @required this.options,
+    required this.options,
     this.showLoadingIndicator = true,
   }) : super(key: key);
 
   final String text;
-  final Widget icon;
-  final IconData iconData;
+  final Widget? icon;
+  final IconData? iconData;
   final Function() onPressed;
   final FFButtonOptions options;
   final bool showLoadingIndicator;
@@ -70,7 +70,7 @@ class _FFButtonWidgetState extends State<FFButtonWidget> {
               height: 23,
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  widget.options.textStyle.color ?? Colors.white,
+                  widget.options.textStyle!.color ?? Colors.white,
                 ),
               ),
             ),
@@ -102,7 +102,7 @@ class _FFButtonWidgetState extends State<FFButtonWidget> {
       return Container(
         height: widget.options.height,
         width: widget.options.width,
-        child: RaisedButton.icon(
+        child: ElevatedButton.icon(
           icon: Padding(
             padding: widget.options.iconPadding ?? EdgeInsets.zero,
             child: widget.icon ??
@@ -110,23 +110,27 @@ class _FFButtonWidgetState extends State<FFButtonWidget> {
                   widget.iconData,
                   size: widget.options.iconSize,
                   color: widget.options.iconColor ??
-                      widget.options.textStyle.color,
+                      widget.options.textStyle?.color,
                 ),
           ),
           label: textWidget,
           onPressed: onPressed,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(widget.options.borderRadius),
-            side: widget.options.borderSide ?? BorderSide.none,
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.circular(widget.options.borderRadius ?? 28),
+              side: widget.options.borderSide ?? BorderSide.none,
+            ),
+            backgroundColor: widget.options.color,
+            foregroundColor: widget.options.textStyle?.color,
+            disabledBackgroundColor: widget.options.disabledColor,
+            disabledForegroundColor: widget.options.disabledTextColor,
+            elevation: widget.options.elevation,
+            splashFactory: widget.options.splashColor != null
+                ? InkRipple.splashFactory
+                : null,
+            padding: widget.options.padding,
           ),
-          color: widget.options.color,
-          colorBrightness:
-              ThemeData.estimateBrightnessForColor(widget.options.color),
-          textColor: widget.options.textStyle.color,
-          disabledColor: widget.options.disabledColor,
-          disabledTextColor: widget.options.disabledTextColor,
-          elevation: widget.options.elevation,
-          splashColor: widget.options.splashColor,
         ),
       );
     }
@@ -134,21 +138,22 @@ class _FFButtonWidgetState extends State<FFButtonWidget> {
     return Container(
       height: widget.options.height,
       width: widget.options.width,
-      child: RaisedButton(
+      child: ElevatedButton(
         onPressed: onPressed,
-        shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(widget.options.borderRadius ?? 28),
-          side: widget.options.borderSide ?? BorderSide.none,
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius:
+                BorderRadius.circular(widget.options.borderRadius ?? 28),
+            side: widget.options.borderSide ?? BorderSide.none,
+          ),
+          foregroundColor:
+              widget.options.textStyle?.color, // for text/icon color
+          backgroundColor: widget.options.color,
+          disabledBackgroundColor: widget.options.disabledColor,
+          disabledForegroundColor: widget.options.disabledTextColor,
+          padding: widget.options.padding,
+          elevation: widget.options.elevation,
         ),
-        textColor: widget.options.textStyle.color,
-        color: widget.options.color,
-        colorBrightness:
-            ThemeData.estimateBrightnessForColor(widget.options.color),
-        disabledColor: widget.options.disabledColor,
-        disabledTextColor: widget.options.disabledTextColor,
-        padding: widget.options.padding,
-        elevation: widget.options.elevation,
         child: textWidget,
       ),
     );

@@ -5,7 +5,7 @@ import '../signup/signup_widget.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreenWidget extends StatefulWidget {
-  const SplashScreenWidget({Key key}) : super(key: key);
+  const SplashScreenWidget({Key? key}) : super(key: key);
 
   @override
   _SplashScreenWidgetState createState() => _SplashScreenWidgetState();

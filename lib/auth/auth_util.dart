@@ -15,12 +15,12 @@ export 'google_auth.dart';
 
 /// Tries to sign in or create an account using Firebase Auth.
 /// Returns the User object if sign in was successful.
-Future<User> signInOrCreateAccount(
-    BuildContext context, Future<UserCredential> Function() signInFunc) async {
+Future<User?> signInOrCreateAccount(
+    BuildContext context, Future<UserCredential?> Function() signInFunc) async {
   try {
     final userCredential = await signInFunc();
-    await maybeCreateUser(userCredential.user);
-    return userCredential.user;
+    await maybeCreateUser(userCredential!.user!);
+    return userCredential.user!;
   } on FirebaseAuthException catch (e) {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
@@ -30,12 +30,13 @@ Future<User> signInOrCreateAccount(
   }
 }
 
-Future signOut() {
+Future<void> signOut() async {
   _currentJwtToken = '';
-  FirebaseAuth.instance.signOut();
+  await FirebaseAuth.instance.signOut();
 }
 
-Future resetPassword({String email, BuildContext context}) async {
+
+Future resetPassword({required String email, required BuildContext context}) async {
   try {
     await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
   } on FirebaseAuthException catch (e) {
@@ -51,47 +52,47 @@ Future resetPassword({String email, BuildContext context}) async {
 }
 
 Future sendEmailVerification() async =>
-    currentUser.user.sendEmailVerification();
+    currentUser!.user.sendEmailVerification();
 
-String _currentJwtToken = '';
+String? _currentJwtToken = '';
 
 String get currentUserEmail =>
-    currentUserDocument.email ?? currentUser.user.email ?? '';
+    currentUserDocument!.email ?? currentUser!.user.email ?? '';
 
 String get currentUserUid =>
-    currentUserDocument.uid ?? currentUser.user.uid ?? '';
+    currentUserDocument!.uid ?? currentUser!.user.uid ?? '';
 
 String get currentUserDisplayName =>
-    currentUserDocument.displayName ?? currentUser.user.displayName ?? '';
+    currentUserDocument!.displayName ?? currentUser!.user.displayName ?? '';
 
 String get currentUserPhoto =>
-    currentUserDocument.photoUrl ?? currentUser.user.photoURL ?? '';
+    currentUserDocument!.photoUrl ?? currentUser!.user.photoURL ?? '';
 
 String get currentPhoneNumber =>
-    currentUserDocument.phoneNumber ?? currentUser.user.phoneNumber ?? '';
+    currentUserDocument!.phoneNumber ?? currentUser!.user.phoneNumber ?? '';
 
 String get currentJwtToken => _currentJwtToken ?? '';
 
 bool get currentUserEmailVerified {
   // Reloads the user when checking in order to get the most up to date
   // email verified status.
-  if (currentUser.user != null && !currentUser.user.emailVerified) {
-    currentUser.user
+  if (!currentUser!.user.emailVerified) {
+    currentUser!.user
         .reload()
-        .then((_) => currentUser.user = FirebaseAuth.instance.currentUser);
+        .then((_) => currentUser!.user = FirebaseAuth.instance.currentUser!);
   }
-  return currentUser.user.emailVerified ?? false;
+  return currentUser!.user.emailVerified;
 }
 
 // Set when using phone verification (after phone number is provided).
-String _phoneAuthVerificationCode;
+String? _phoneAuthVerificationCode;
 // Set when using phone sign in in web mode (ignored otherwise).
-ConfirmationResult _webPhoneAuthConfirmationResult;
+ConfirmationResult? _webPhoneAuthConfirmationResult;
 
 Future beginPhoneAuth({
-  BuildContext context,
-  String phoneNumber,
-  VoidCallback onCodeSent,
+  required BuildContext context,
+  required String phoneNumber,
+  required VoidCallback onCodeSent,
 }) async {
   if (kIsWeb) {
     _webPhoneAuthConfirmationResult =
@@ -131,15 +132,15 @@ Future beginPhoneAuth({
 }
 
 Future verifySmsCode({
-  BuildContext context,
-  String smsCode,
+  required BuildContext context,
+  required String smsCode,
 }) async {
   if (kIsWeb) {
     return signInOrCreateAccount(
-        context, () => _webPhoneAuthConfirmationResult.confirm(smsCode));
+        context, () => _webPhoneAuthConfirmationResult!.confirm(smsCode));
   } else {
     final authCredential = PhoneAuthProvider.credential(
-        verificationId: _phoneAuthVerificationCode, smsCode: smsCode);
+        verificationId: _phoneAuthVerificationCode.toString(), smsCode: smsCode);
     return signInOrCreateAccount(
       context,
       () => FirebaseAuth.instance.signInWithCredential(authCredential),
@@ -147,11 +148,11 @@ Future verifySmsCode({
   }
 }
 
-DocumentReference get currentUserReference => currentUser.user != null
-    ? UsersRecord.collection.doc(currentUser.user.uid)
+DocumentReference? get currentUserReference => currentUser!.user != null
+    ? UsersRecord.collection.doc(currentUser!.user.uid)
     : null;
 
-UsersRecord currentUserDocument;
+UsersRecord? currentUserDocument;
 final authenticatedUserStream = FirebaseAuth.instance
     .authStateChanges()
     .map<String>((user) {
@@ -168,7 +169,7 @@ final authenticatedUserStream = FirebaseAuth.instance
     .asBroadcastStream();
 
 class AuthUserStreamWidget extends StatelessWidget {
-  const AuthUserStreamWidget({Key key, this.child}) : super(key: key);
+  const AuthUserStreamWidget({Key? key, required this.child}) : super(key: key);
 
   final Widget child;
 

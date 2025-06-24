@@ -5,7 +5,7 @@ import '../profilepage/profilepage_widget.dart';
 import 'package:flutter/material.dart';
 
 class SettingsWidget extends StatefulWidget {
-  const SettingsWidget({Key key}) : super(key: key);
+  const SettingsWidget({Key? key}) : super(key: key);
 
   @override
   _SettingsWidgetState createState() => _SettingsWidgetState();

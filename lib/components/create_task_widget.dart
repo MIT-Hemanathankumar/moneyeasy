@@ -6,17 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class CreateTaskWidget extends StatefulWidget {
-  const CreateTaskWidget({Key key}) : super(key: key);
+  const CreateTaskWidget({Key? key}) : super(key: key);
 
   @override
   _CreateTaskWidgetState createState() => _CreateTaskWidgetState();
 }
 
 class _CreateTaskWidgetState extends State<CreateTaskWidget> {
-  DateTime datePicked;
-  TextEditingController textController1;
-  TextEditingController textController2;
-  ToDoListRecord newRecord;
+  DateTime? datePicked;
+  late TextEditingController textController1;
+  late TextEditingController textController2;
+  late ToDoListRecord newRecord;
 
   @override
   void initState() {
@@ -71,7 +71,7 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
                     'Fill out the details below to add a new task.',
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Lexend Deca',
-                          color: FlutterFlowTheme.of(context).tertiaryColor,
+                          color: FlutterFlowTheme.of(context).tertiaryColor!,
                         ),
                   ),
                 ],
@@ -86,23 +86,23 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
                   labelText: 'Task Name',
                   labelStyle: FlutterFlowTheme.of(context).bodyText1.override(
                         fontFamily: 'Lexend Deca',
-                        color: FlutterFlowTheme.of(context).tertiaryColor,
+                        color: FlutterFlowTheme.of(context).tertiaryColor!,
                       ),
                   hintText: 'Enter your task here....',
                   hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                         fontFamily: 'Lexend Deca',
-                        color: FlutterFlowTheme.of(context).tertiaryColor,
+                        color: FlutterFlowTheme.of(context).tertiaryColor!,
                       ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).darkBG,
+                      color: FlutterFlowTheme.of(context).darkBG!,
                       width: 1,
                     ),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).darkBG,
+                      color: FlutterFlowTheme.of(context).darkBG!,
                       width: 1,
                     ),
                     borderRadius: BorderRadius.circular(8),
@@ -122,23 +122,23 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
                   labelText: 'Details',
                   labelStyle: FlutterFlowTheme.of(context).bodyText1.override(
                         fontFamily: 'Lexend Deca',
-                        color: FlutterFlowTheme.of(context).tertiaryColor,
+                        color: FlutterFlowTheme.of(context).tertiaryColor!,
                       ),
                   hintText: 'Enter a description here...',
                   hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                         fontFamily: 'Lexend Deca',
-                        color: FlutterFlowTheme.of(context).tertiaryColor,
+                        color: FlutterFlowTheme.of(context).tertiaryColor!,
                       ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).darkBG,
+                      color: FlutterFlowTheme.of(context).darkBG!,
                       width: 1,
                     ),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).darkBG,
+                      color: FlutterFlowTheme.of(context).darkBG!,
                       width: 1,
                     ),
                     borderRadius: BorderRadius.circular(8),
@@ -172,17 +172,17 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
                     color: FlutterFlowTheme.of(context).darkBG,
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
-                      color: FlutterFlowTheme.of(context).darkBG,
+                      color: FlutterFlowTheme.of(context).darkBG!,
                       width: 1,
                     ),
                   ),
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(10, 14, 0, 0),
                     child: Text(
-                      dateTimeFormat('MMMEd', datePicked),
+                      dateTimeFormat('MMMEd', datePicked!),
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Lexend Deca',
-                            color: FlutterFlowTheme.of(context).tertiaryColor,
+                            color: FlutterFlowTheme.of(context).tertiaryColor!,
                           ),
                     ),
                   ),
@@ -203,7 +203,7 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
                     options: FFButtonOptions(
                       width: 130,
                       height: 50,
-                      color: FlutterFlowTheme.of(context).primaryBlack,
+                      color: FlutterFlowTheme.of(context).primaryBlack!,
                       textStyle:
                           FlutterFlowTheme.of(context).subtitle2.override(
                                 fontFamily: 'Lexend Deca',
@@ -221,13 +221,13 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
                       final toDoListCreateData = createToDoListRecordData(
                         toDoName: textController1.text,
                         toDoDescription: textController2.text,
-                        toDoDate: datePicked,
+                        toDoDate: datePicked!,
                       );
                       final toDoListRecordReference =
                           ToDoListRecord.collection.doc();
                       await toDoListRecordReference.set(toDoListCreateData);
                       newRecord = ToDoListRecord.getDocumentFromData(
-                          toDoListCreateData, toDoListRecordReference);
+                          toDoListCreateData, toDoListRecordReference)!;
                       Navigator.pop(context);
 
                       setState(() {});
@@ -236,7 +236,7 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
                     options: FFButtonOptions(
                       width: 130,
                       height: 50,
-                      color: FlutterFlowTheme.of(context).primaryColor,
+                      color: FlutterFlowTheme.of(context).primaryColor!,
                       textStyle:
                           FlutterFlowTheme.of(context).subtitle2.override(
                                 fontFamily: 'Lexend Deca',

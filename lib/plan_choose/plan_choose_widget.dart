@@ -5,7 +5,7 @@ import '../signin/signin_widget.dart';
 import 'package:flutter/material.dart';
 
 class PlanChooseWidget extends StatefulWidget {
-  const PlanChooseWidget({Key key}) : super(key: key);
+  const PlanChooseWidget({Key? key}) : super(key: key);
 
   @override
   _PlanChooseWidgetState createState() => _PlanChooseWidgetState();

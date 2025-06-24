@@ -5,7 +5,7 @@ import '../videopage/videopage_widget.dart';
 import 'package:flutter/material.dart';
 
 class DashboardWidget extends StatefulWidget {
-  const DashboardWidget({Key key}) : super(key: key);
+  const DashboardWidget({Key? key}) : super(key: key);
 
   @override
   _DashboardWidgetState createState() => _DashboardWidgetState();
@@ -53,7 +53,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
               'Suresh',
               style: FlutterFlowTheme.of(context).subtitle2.override(
                     fontFamily: 'Lexend Deca',
-                    color: FlutterFlowTheme.of(context).tertiaryColor,
+                    color: FlutterFlowTheme.of(context).tertiaryColor!,
                   ),
             ),
             Text(
@@ -263,7 +263,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           .override(
                                             fontFamily: 'Lexend Deca',
                                             color: FlutterFlowTheme.of(context)
-                                                .white,
+                                                .white!,
                                           ),
                                     ),
                                   ),

@@ -6,17 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class CreateTaskCopyWidget extends StatefulWidget {
-  const CreateTaskCopyWidget({Key key}) : super(key: key);
+  const CreateTaskCopyWidget({Key? key}) : super(key: key);
 
   @override
   _CreateTaskCopyWidgetState createState() => _CreateTaskCopyWidgetState();
 }
 
 class _CreateTaskCopyWidgetState extends State<CreateTaskCopyWidget> {
-  DateTime datePicked;
-  TextEditingController textController1;
-  TextEditingController textController2;
-  TextEditingController textController3;
+   DateTime? datePicked;
+   late TextEditingController textController1;
+  late TextEditingController textController2;
+  late TextEditingController textController3;
 
   @override
   void initState() {
@@ -72,7 +72,7 @@ class _CreateTaskCopyWidgetState extends State<CreateTaskCopyWidget> {
                     'Fill out the details below to add a new task.',
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Lexend Deca',
-                          color: FlutterFlowTheme.of(context).tertiaryColor,
+                          color: FlutterFlowTheme.of(context).tertiaryColor!,
                         ),
                   ),
                 ],
@@ -88,18 +88,18 @@ class _CreateTaskCopyWidgetState extends State<CreateTaskCopyWidget> {
                   hintText: 'Enter your task here....',
                   hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                         fontFamily: 'Lexend Deca',
-                        color: FlutterFlowTheme.of(context).tertiaryColor,
+                        color: FlutterFlowTheme.of(context).tertiaryColor!,
                       ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).darkBG,
+                      color: FlutterFlowTheme.of(context).darkBG!,
                       width: 1,
                     ),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).darkBG,
+                      color: FlutterFlowTheme.of(context).darkBG!,
                       width: 1,
                     ),
                     borderRadius: BorderRadius.circular(8),
@@ -118,18 +118,18 @@ class _CreateTaskCopyWidgetState extends State<CreateTaskCopyWidget> {
                   hintText: 'Enter a description here...',
                   hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                         fontFamily: 'Lexend Deca',
-                        color: FlutterFlowTheme.of(context).tertiaryColor,
+                        color: FlutterFlowTheme.of(context).tertiaryColor!,
                       ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).darkBG,
+                      color: FlutterFlowTheme.of(context).darkBG!,
                       width: 1,
                     ),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).darkBG,
+                      color: FlutterFlowTheme.of(context).darkBG!,
                       width: 1,
                     ),
                     borderRadius: BorderRadius.circular(8),
@@ -150,18 +150,18 @@ class _CreateTaskCopyWidgetState extends State<CreateTaskCopyWidget> {
                   hintText: 'Enter your task here....',
                   hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                         fontFamily: 'Lexend Deca',
-                        color: FlutterFlowTheme.of(context).tertiaryColor,
+                        color: FlutterFlowTheme.of(context).tertiaryColor!,
                       ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).darkBG,
+                      color: FlutterFlowTheme.of(context).darkBG!,
                       width: 1,
                     ),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).darkBG,
+                      color: FlutterFlowTheme.of(context).darkBG!,
                       width: 1,
                     ),
                     borderRadius: BorderRadius.circular(8),
@@ -191,7 +191,7 @@ class _CreateTaskCopyWidgetState extends State<CreateTaskCopyWidget> {
                     color: FlutterFlowTheme.of(context).darkBG,
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
-                      color: FlutterFlowTheme.of(context).darkBG,
+                      color: FlutterFlowTheme.of(context).darkBG!,
                       width: 1,
                     ),
                   ),
@@ -219,7 +219,7 @@ class _CreateTaskCopyWidgetState extends State<CreateTaskCopyWidget> {
                     options: FFButtonOptions(
                       width: 130,
                       height: 50,
-                      color: FlutterFlowTheme.of(context).primaryBlack,
+                      color: FlutterFlowTheme.of(context).primaryBlack!,
                       textStyle:
                           FlutterFlowTheme.of(context).subtitle2.override(
                                 fontFamily: 'Lexend Deca',
@@ -237,7 +237,7 @@ class _CreateTaskCopyWidgetState extends State<CreateTaskCopyWidget> {
                       final toDoListCreateData = createToDoListRecordData(
                         toDoName: textController1.text,
                         toDoDescription: textController2.text,
-                        toDoDate: datePicked,
+                        toDoDate: datePicked!,
                       );
                       await ToDoListRecord.collection
                           .doc()
@@ -248,7 +248,7 @@ class _CreateTaskCopyWidgetState extends State<CreateTaskCopyWidget> {
                     options: FFButtonOptions(
                       width: 130,
                       height: 50,
-                      color: FlutterFlowTheme.of(context).primaryColor,
+                      color: FlutterFlowTheme.of(context).primaryColor!,
                       textStyle:
                           FlutterFlowTheme.of(context).subtitle2.override(
                                 fontFamily: 'Lexend Deca',

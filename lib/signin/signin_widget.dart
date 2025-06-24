@@ -3,16 +3,16 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 
 class SigninWidget extends StatefulWidget {
-  const SigninWidget({Key key}) : super(key: key);
+  const SigninWidget({Key? key}) : super(key: key);
 
   @override
   _SigninWidgetState createState() => _SigninWidgetState();
 }
 
 class _SigninWidgetState extends State<SigninWidget> {
-  TextEditingController emailAddressController;
-  TextEditingController passwordController;
-  bool passwordVisibility;
+  late TextEditingController emailAddressController;
+  late TextEditingController passwordController;
+  late bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override

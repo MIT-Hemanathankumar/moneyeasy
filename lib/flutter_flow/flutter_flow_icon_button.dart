@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 
 class FlutterFlowIconButton extends StatelessWidget {
   const FlutterFlowIconButton(
-      {Key key,
-      this.borderColor,
-      this.borderRadius,
-      this.borderWidth,
-      this.buttonSize,
-      this.fillColor,
-      this.icon,
-      this.onPressed})
+      {Key? key,
+      required this.borderColor,
+      required this.borderRadius,
+       this.borderWidth,
+      required this.buttonSize,
+       this.fillColor,
+      required this.icon,
+      required this.onPressed})
       : super(key: key);
 
   final double borderRadius;
   final double buttonSize;
-  final Color fillColor;
+  final Color? fillColor;
   final Color borderColor;
-  final double borderWidth;
+  final double? borderWidth;
   final Widget icon;
   final void Function() onPressed;
 

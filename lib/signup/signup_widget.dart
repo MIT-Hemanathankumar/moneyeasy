@@ -7,19 +7,19 @@ import '../plan_choose/plan_choose_widget.dart';
 import 'package:flutter/material.dart';
 
 class SignupWidget extends StatefulWidget {
-  const SignupWidget({Key key}) : super(key: key);
+  const SignupWidget({Key? key}) : super(key: key);
 
   @override
   _SignupWidgetState createState() => _SignupWidgetState();
 }
 
 class _SignupWidgetState extends State<SignupWidget> {
-  TextEditingController emailAddressController1;
-  TextEditingController emailAddressController2;
-  TextEditingController passwordController1;
-  bool passwordVisibility1;
-  TextEditingController passwordController2;
-  bool passwordVisibility2;
+  late TextEditingController emailAddressController1;
+  late TextEditingController emailAddressController2;
+  late TextEditingController passwordController1;
+  late bool passwordVisibility1;
+  late TextEditingController passwordController2;
+  late bool passwordVisibility2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override

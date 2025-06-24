@@ -55,12 +55,12 @@ enum DecimalType {
 
 String formatNumber(
   num value, {
-  FormatType formatType,
-  DecimalType decimalType,
-  String currency,
+  FormatType? formatType,
+  DecimalType? decimalType,
+  String? currency,
   bool toLowerCase = false,
-  String format,
-  String locale,
+  String? format,
+  String? locale,
 }) {
   var formattedValue = '';
   switch (formatType) {
@@ -93,7 +93,7 @@ String formatNumber(
       formattedValue = NumberFormat.compactLong().format(value);
       break;
     case FormatType.custom:
-      final hasLocale = locale.isNotEmpty;
+      final hasLocale = locale!.isNotEmpty;
       formattedValue =
           NumberFormat(format, hasLocale ? locale : null).format(value);
   }
@@ -102,7 +102,7 @@ String formatNumber(
     return value.toString();
   }
 
-  final currencySymbol = currency.isNotEmpty
+  final currencySymbol = currency!.isNotEmpty
       ? currency
       : NumberFormat.simpleCurrency().format(0.0).substring(0, 1);
   formattedValue = '$currencySymbol$formattedValue';
@@ -130,7 +130,7 @@ dynamic getJsonField(dynamic response, String jsonPath) {
 
 bool get isAndroid => !kIsWeb && Platform.isAndroid;
 bool responsiveVisibility({
-  @required BuildContext context,
+  required BuildContext context,
   bool phone = true,
   bool tablet = true,
   bool tabletLandscape = true,
@@ -153,10 +153,10 @@ extension StringDocRef on String {
 }
 
 void setAppLanguage(BuildContext context, String language) =>
-    MyApp.of(context).setLocale(Locale(language, ''));
+    MyApp.of(context)!.setLocale(Locale(language, ''));
 
 void setDarkModeSetting(BuildContext context, ThemeMode themeMode) =>
-    MyApp.of(context).setThemeMode(themeMode);
+    MyApp.of(context)!.setThemeMode(themeMode);
 
 void showSnackbar(
   BuildContext context,
@@ -189,6 +189,6 @@ void showSnackbar(
 }
 
 extension FFStringExt on String {
-  String maybeHandleOverflow({int maxChars, String replacement = ''}) =>
+  String maybeHandleOverflow({required int maxChars, String replacement = ''}) =>
       length > maxChars ? replaceRange(maxChars, null, replacement) : this;
 }

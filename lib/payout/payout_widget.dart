@@ -3,14 +3,14 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 
 class PayoutWidget extends StatefulWidget {
-  const PayoutWidget({Key key}) : super(key: key);
+  const PayoutWidget({Key? key}) : super(key: key);
 
   @override
   _PayoutWidgetState createState() => _PayoutWidgetState();
 }
 
 class _PayoutWidgetState extends State<PayoutWidget> {
-  TextEditingController textController;
+  late TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override

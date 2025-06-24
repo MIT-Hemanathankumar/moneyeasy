@@ -21,11 +21,11 @@ enum MediaSource {
   camera,
 }
 
-Future<SelectedMedia> selectMediaWithSourceBottomSheet({
-  BuildContext context,
-  double maxWidth,
-  double maxHeight,
-  bool allowPhoto,
+Future<SelectedMedia?> selectMediaWithSourceBottomSheet({
+  BuildContext? context,
+  double? maxWidth,
+  double? maxHeight,
+  bool? allowPhoto,
   bool allowVideo = false,
   String pickerFontFamily = 'Roboto',
   Color textColor = const Color(0xFF111417),
@@ -46,12 +46,12 @@ Future<SelectedMedia> selectMediaWithSourceBottomSheet({
             tileColor: backgroundColor,
             dense: false,
             onTap: () => Navigator.pop(
-              context,
+              context!,
               mediaSource,
             ),
           );
   final mediaSource = await showModalBottomSheet<MediaSource>(
-      context: context,
+      context: context!,
       backgroundColor: backgroundColor,
       builder: (context) {
         return Column(
@@ -75,7 +75,7 @@ Future<SelectedMedia> selectMediaWithSourceBottomSheet({
               ),
             ),
             const Divider(),
-            if (allowPhoto && allowVideo) ...[
+            if (allowPhoto! && allowVideo) ...[
               createUploadMediaListTile(
                 'Gallery (Photo)',
                 MediaSource.photoGallery,
@@ -106,17 +106,17 @@ Future<SelectedMedia> selectMediaWithSourceBottomSheet({
     return null;
   }
   return selectMedia(
-    maxWidth: maxWidth,
-    maxHeight: maxHeight,
+    maxWidth: maxWidth!,
+    maxHeight: maxHeight!,
     isVideo: mediaSource == MediaSource.videoGallery ||
-        (mediaSource == MediaSource.camera && allowVideo && !allowPhoto),
+        (mediaSource == MediaSource.camera && allowVideo && !allowPhoto!),
     mediaSource: mediaSource,
   );
 }
 
-Future<SelectedMedia> selectMedia({
-  double maxWidth,
-  double maxHeight,
+Future<SelectedMedia?> selectMedia({
+  double? maxWidth,
+  double? maxHeight,
   bool isVideo = false,
   MediaSource mediaSource = MediaSource.camera,
 }) async {
@@ -133,7 +133,7 @@ Future<SelectedMedia> selectMedia({
   if (mediaBytes == null) {
     return null;
   }
-  final path = storagePath(currentUserUid, pickedMedia.name, isVideo);
+  final path = storagePath(currentUserUid, pickedMedia!.name, isVideo);
   return SelectedMedia(path, mediaBytes);
 }
 

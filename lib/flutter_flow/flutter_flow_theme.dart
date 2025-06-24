@@ -6,19 +6,19 @@ import 'package:google_fonts/google_fonts.dart';
 abstract class FlutterFlowTheme {
   static FlutterFlowTheme of(BuildContext context) => LightModeTheme();
 
-  Color primaryColor;
-  Color secondaryColor;
-  Color tertiaryColor;
-  Color alternate;
-  Color primaryBackground;
-  Color secondaryBackground;
-  Color primaryText;
-  Color secondaryText;
+  Color? primaryColor;
+  Color? secondaryColor;
+  Color? tertiaryColor;
+  Color? alternate;
+  Color? primaryBackground;
+  Color? secondaryBackground;
+  Color? primaryText;
+  Color? secondaryText;
 
-  Color white;
-  Color grayBG;
-  Color darkBG;
-  Color primaryBlack;
+  Color? white;
+  Color? grayBG;
+  Color? darkBG;
+  Color? primaryBlack;
 
   TextStyle get title1 => GoogleFonts.getFont(
         'Lexend Deca',
@@ -65,34 +65,34 @@ abstract class FlutterFlowTheme {
 }
 
 class LightModeTheme extends FlutterFlowTheme {
-  Color primaryColor = const Color(0xFF9DB748);
-  Color secondaryColor = const Color(0xFF08622E);
-  Color tertiaryColor = const Color(0xFF95A1AC);
-  Color alternate = const Color(0x00000000);
-  Color primaryBackground = const Color(0x00000000);
-  Color secondaryBackground = const Color(0x00000000);
-  Color primaryText = const Color(0x00000000);
-  Color secondaryText = const Color(0x00000000);
+  Color? primaryColor = const Color(0xFF9DB748);
+  Color? secondaryColor = const Color(0xFF08622E);
+  Color? tertiaryColor = const Color(0xFF95A1AC);
+  Color? alternate = const Color(0x00000000);
+  Color? primaryBackground = const Color(0x00000000);
+  Color? secondaryBackground = const Color(0x00000000);
+  Color? primaryText = const Color(0x00000000);
+  Color? secondaryText = const Color(0x00000000);
 
-  Color white = Color(0xFFFFFFFF);
-  Color grayBG = Color(0xFFDBE2E7);
-  Color darkBG = Color(0xFF1A1F24);
-  Color primaryBlack = Color(0xFF131619);
+  Color? white = Color(0xFFFFFFFF);
+  Color? grayBG = Color(0xFFDBE2E7);
+  Color? darkBG = Color(0xFF1A1F24);
+  Color? primaryBlack = Color(0xFF131619);
 }
 
 extension TextStyleHelper on TextStyle {
   TextStyle override({
-    String fontFamily,
-    Color color,
-    double fontSize,
-    FontWeight fontWeight,
-    FontStyle fontStyle,
+    String? fontFamily,
+    Color? color,
+    double? fontSize,
+    FontWeight? fontWeight,
+    FontStyle? fontStyle,
     bool useGoogleFonts = true,
-    double lineHeight,
+    double? lineHeight,
   }) =>
       useGoogleFonts
           ? GoogleFonts.getFont(
-              fontFamily,
+              fontFamily!,
               color: color ?? this.color,
               fontSize: fontSize ?? this.fontSize,
               fontWeight: fontWeight ?? this.fontWeight,

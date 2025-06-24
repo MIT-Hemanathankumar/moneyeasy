@@ -14,38 +14,38 @@ export 'schema/users_record.dart';
 export 'schema/to_do_list_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
-Stream<List<UsersRecord>> queryUsersRecord(
-        {Query Function(Query) queryBuilder,
+Stream<List<UsersRecord?>> queryUsersRecord(
+        {required Query Function(Query) queryBuilder,
         int limit = -1,
         bool singleRecord = false}) =>
     queryCollection(UsersRecord.collection, UsersRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
-Future<List<UsersRecord>> queryUsersRecordOnce(
-        {Query Function(Query) queryBuilder,
+Future<List<UsersRecord?>> queryUsersRecordOnce(
+        {required Query Function(Query) queryBuilder,
         int limit = -1,
         bool singleRecord = false}) =>
     queryCollectionOnce(UsersRecord.collection, UsersRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 /// Functions to query ToDoListRecords (as a Stream and as a Future).
-Stream<List<ToDoListRecord>> queryToDoListRecord(
-        {Query Function(Query) queryBuilder,
+Stream<List<ToDoListRecord?>> queryToDoListRecord(
+        {required Query Function(Query) queryBuilder,
         int limit = -1,
         bool singleRecord = false}) =>
     queryCollection(ToDoListRecord.collection, ToDoListRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
-Future<List<ToDoListRecord>> queryToDoListRecordOnce(
-        {Query Function(Query) queryBuilder,
+Future<List<ToDoListRecord?>> queryToDoListRecordOnce(
+        {required Query Function(Query) queryBuilder,
         int limit = -1,
         bool singleRecord = false}) =>
     queryCollectionOnce(ToDoListRecord.collection, ToDoListRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
-Stream<List<T>> queryCollection<T>(
+Stream<List<T?>> queryCollection<T>(
     CollectionReference collection, Serializer<T> serializer,
-    {Query Function(Query) queryBuilder,
+    {required Query Function(Query) queryBuilder,
     int limit = -1,
     bool singleRecord = false}) {
   final builder = queryBuilder ?? (q) => q;
@@ -64,9 +64,9 @@ Stream<List<T>> queryCollection<T>(
       .toList());
 }
 
-Future<List<T>> queryCollectionOnce<T>(
+Future<List<T?>> queryCollectionOnce<T>(
     CollectionReference collection, Serializer<T> serializer,
-    {Query Function(Query) queryBuilder,
+    {required Query Function(Query) queryBuilder,
     int limit = -1,
     bool singleRecord = false}) {
   final builder = queryBuilder ?? (q) => q;
@@ -94,11 +94,11 @@ Future maybeCreateUser(User user) async {
   }
 
   final userData = createUsersRecordData(
-    email: user.email,
-    displayName: user.displayName,
-    photoUrl: user.photoURL,
+    email: user.email.toString(),
+    displayName: user.displayName.toString(),
+    photoUrl: user.photoURL.toString(),
     uid: user.uid,
-    phoneNumber: user.phoneNumber,
+    phoneNumber: user.phoneNumber.toString(),
     createdTime: getCurrentTimestamp,
   );
 
